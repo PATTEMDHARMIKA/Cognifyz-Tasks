@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       
+        body{
+            background-color: rgb(246, 174, 133);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            
+        }
+      #myButton {
+        background-color: #946df9;
+        border: none;
+        color: rgb(248, 242, 242);
+        padding: 20px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 4px 2px;
+        cursor: pointer;
+
+      }
+    </style>
+  </head>
+  <body>
+    <h>Color Button</h>
+    <br>
+    <style>
+        h{
+            color:black;
+            font-size: 30px;
+            background-color: #f0f0f0;
+        }
+    </style>
+    <button id="myButton">Click me to Change Color</button>
+    <br>
+    <Style>
+        button{
+            align-content: center;
+        }
+    </Style>
+    <input type="number" id="num1" placeholder="Enter first digit">
+    <br>
+    <input type="number" id="num2" placeholder="Enter second digit">
+    <br>
+    <style>
+        input{
+            display:inline-flex;
+            font-size: 30px;
+        }
+    </style>
+    <br>
+    <button id="calculate">Calculate</button>
+    <style>
+        button{
+            font-size: 30px;
+            background-color: skyblue;
+
+        }
+        <br>
+
+    </style>
+    <p id="result"></p>
+    <style>
+        p{
+            font-size: 30px;
+        }
+    </style>
+
+    <script>
+      // Get the button element
+      const button = document.getElementById("myButton");
+
+      // Add an event listener to the button
+      button.addEventListener("click", function () {
+        // Change the background color of the button when clicked
+        button.style.backgroundColor = "red";
+      });
+
+      // Get the current time
+      const now = new Date();
+      const hours = now.getHours();
+
+      // Display a greeting message based on the current time
+      if (hours < 12) {
+        alert("Good morning!");
+      } else if (hours < 18) {
+        alert("Good afternoon!");
+      } else {
+        alert("Good evening!");
+      }
+
+      // Get the button element for the calculation
+      const calculate = document.getElementById("calculate");
+
+      // Get the result element
+      const result = document.getElementById("result");
+
+      // Add an event listener to the calculation button
+      calculate.addEventListener("click", function () {
+        // Get the values of the two input elements
+        const n1 = parseFloat(num1.value);
+        const n2 = parseFloat(num2.value);
+
+        // Check if the input values are valid numbers
+        if (isNaN(n1) || isNaN(n2)) {
+          alert("Please enter valid numbers.");
+          return;
+        }
+
+        // Add the two numbers together
+        const sum = n1 + n2;
+
+        // Display the result on screen
+        result.textContent = "Result: " + sum;
+      });
+    </script>
+  </body>
+</html>

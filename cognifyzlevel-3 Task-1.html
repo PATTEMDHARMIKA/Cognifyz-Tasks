@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery & Slideshow</title>
+    <style>
+        body{
+            background-color:rgb(174, 207, 240);
+        }
+       .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: rgb(186, 235, 9);
+        }
+       .thumbnail {
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+       .thumbnail:hover {
+            transform: scale(1.1);
+        }
+       .thumbnail.enlarged {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+            width: 500px; /* Set the enlarged image width */
+            height: 300px; /* Set the enlarged image height */
+        }
+       .slideshow-container {
+            max-width: 50%;
+            position: relative;
+            margin: auto;
+            background-color: coral;
+            
+        }
+       .mySlides {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background-color: coral;
+        }
+       .slideshow-img {
+            width: 100%;
+            height: auto;
+            background-color: coral;
+        }
+       .prev,.next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+       .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+       .prev:hover,.next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+       .caption {
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        h3{
+            font-size:xx-large;
+            text-align: center;
+            color:rebeccapurple
+        }
+        h2{
+            font-size:xx-large;
+            text-align: center;
+            color:rebeccapurple
+        }
+    </style>
+</head>
+<body>
+
+<h2> Gallery Images</h2>
+<div class="gallery">
+    <img class="thumbnail" src="sc1.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="sc2.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="sc3.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="sc4.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="sc5.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="bb1.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="bb2.jpeg" onclick="enlargeImage(this)">
+    <img class="thumbnail" src="bb3.jpeg" onclick="enlargeImage(this)">
+</div>
+
+<h3>Slideshow</h3>
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img class="slideshow-img" src="cb1.jpeg" alt="Slide 1">
+       
+    </div>
+    <div class="mySlides fade">
+        <img class="slideshow-img" src="cb2.jpeg" alt="Slide 2">
+        
+    </div>
+    <div class="mySlides fade">
+        <img class="slideshow-img" src="cb3.jpeg" alt="Slide 3">
+       
+    </div>
+    <div class="mySlides fade">
+        <img class="slideshow-img" src="cb4.jpeg" alt="Slide 4">
+        
+    </div>
+    <div class="mySlides fade">
+        <img class="slideshow-img" src="cb5.jpeg" alt="Slide 5">
+        
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<script>
+    let slideIndex = 0;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+
+    function enlargeImage(img) {
+        let enlargedImg = img.cloneNode(true);
+        enlargedImg.classList.add("enlarged");
+        enlargedImg.style.width = "500px";
+        enlargedImg.style.height = "300px";
+        document.body.appendChild(enlargedImg);
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                enlargedImg.remove();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
